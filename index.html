@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PrintCraft — Custom Apparel & Gifts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <a href="#" class="logo">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    Print<span>Craft</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#categories">Shop</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#footer">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search products…" autocomplete="off"/>
+      <button class="search-clear" id="searchClear" aria-label="Clear">✕</button>
+    </div>
+    <button class="icon-btn wishlist-nav" id="wishlistBtn" aria-label="Wishlist">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="badge" id="wishCount" style="display:none">0</span>
+    </button>
+    <button class="icon-btn" id="cartBtn" aria-label="Cart">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="badge" id="cartCount">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ══ MOBILE NAV ══ -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#" onclick="closeMobileNav()">Home</a>
+  <a href="#categories" onclick="closeMobileNav()">Shop</a>
+  <a href="#categories" onclick="closeMobileNav()">Categories</a>
+  <a href="#footer" onclick="closeMobileNav()">Contact</a>
+  <div class="mobile-search">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="mobileSearchInput" placeholder="Search products…"/>
+  </div>
+</div>
+
+<!-- ══ SEARCH RESULTS ══ -->
+<div class="search-results" id="searchResults"></div>
+
+<!-- ══ OVERLAY ══ -->
+<div class="overlay" id="overlay"></div>
+
+<!-- ══ NEW ARRIVALS TICKER ══ -->
+<div class="arrivals-strip" id="arrivalsTicker"></div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-text reveal">
+    <div class="hero-badge"><div class="dot"></div> New Collection 2025</div>
+    <h1>Wear Your<br><em>Creativity</em><br>On Every Thread</h1>
+    <p class="hero-sub">Custom print-on-demand apparel and gifts — designed by you, crafted by us. Ships worldwide in 3–5 days.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary">Shop Now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#categories" class="btn-outline">Browse Categories</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">50k+</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Unique Designs</div></div>
+      <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Avg Rating</div></div>
+    </div>
+  </div>
+  <div class="hero-visual reveal" style="transition-delay:.2s">
+    <div class="hero-canvas">
+      <div class="hero-blob"></div>
+      <div class="hero-tshirt">👕</div>
+      <div class="hero-tags left">
+        <div class="hero-tag"><div class="tdot" style="background:#e84040"></div>Premium Cotton</div>
+        <div class="hero-tag"><div class="tdot" style="background:#f5a623"></div>Fast Shipping</div>
+      </div>
+      <div class="hero-tags right">
+        <div class="hero-tag"><div class="tdot" style="background:#4caf50"></div>Eco-Friendly Ink</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST ══ -->
+<div class="trust">
+  <div class="trust-grid reveal">
+    <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-text"><strong>Free Shipping</strong><span>On orders over $50</span></div></div>
+    <div class="trust-item"><div class="trust-icon">🎨</div><div class="trust-text"><strong>Custom Design</strong><span>Your art, your way</span></div></div>
+    <div class="trust-item"><div class="trust-icon">♻️</div><div class="trust-text"><strong>Eco Printing</strong><span>Water-based, safe inks</span></div></div>
+    <div class="trust-item"><div class="trust-icon">↩️</div><div class="trust-text"><strong>Easy Returns</strong><span>30-day hassle-free</span></div></div>
+  </div>
+</div>
+
+<!-- ══ BESTSELLERS CAROUSEL ══ -->
+<section class="bestsellers" id="bestsellers">
+  <div class="section-header reveal">
+    <div class="section-label">Top Sellers</div>
+    <h2 class="section-title">Customer Favourites</h2>
+    <p class="section-sub">The products our customers can't stop ordering</p>
+  </div>
+  <div class="carousel-wrap reveal" style="transition-delay:.1s">
+    <button class="carousel-arrow prev" id="carouselPrev" aria-label="Previous">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="carousel-track-outer">
+      <div class="carousel-track" id="carouselTrack"></div>
+    </div>
+    <button class="carousel-arrow next" id="carouselNext" aria-label="Next">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<!-- ══ CATEGORIES ══ -->
+<section class="categories" id="categories">
+  <div class="section-header reveal">
+    <div class="section-label">Browse By Type</div>
+    <h2 class="section-title">Shop by Category</h2>
+    <p class="section-sub">Find the perfect canvas for your creativity</p>
+  </div>
+  <div class="cat-grid reveal" style="transition-delay:.15s">
+    <a class="cat-card" href="#products" onclick="filterByCategory('T-Shirt')">
+      <div class="cat-img">
+        <div class="cat-img-bg" style="background:linear-gradient(145deg,#ffe4e4,#ffd0d0)"></div>
+        <div class="cat-img-emoji">
+          <svg viewBox="0 0 160 160" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ct1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff8a80"/><stop offset="100%" stop-color="#e84040"/></linearGradient></defs>
+            <filter id="cs"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-opacity="0.18"/></filter>
+            <g filter="url(#cs)">
+              <path d="M52,34 L28,54 L46,62 L43,126 L117,126 L114,62 L132,54 L108,34 L94,42 Q80,50 66,42 Z" fill="url(#ct1)" rx="4"/>
+              <path d="M66,42 Q80,52 94,42 L96,64 L64,64 Z" fill="#c0392b" opacity="0.5"/>
+              <ellipse cx="80" cy="88" rx="18" ry="18" fill="rgba(255,255,255,0.18)"/>
+              <text x="80" y="114" font-family="sans-serif" font-size="9" font-weight="700" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="2">CUSTOM</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="cat-info"><div class="cat-name">T-Shirts</div><div class="cat-count">42 products</div><div class="cat-arrow">Shop now →</div></div>
+    </a>
+    <a class="cat-card" href="#products" onclick="filterByCategory('Hoodie')">
+      <div class="cat-img">
+        <div class="cat-img-bg" style="background:linear-gradient(145deg,#dde6ff,#c5d5ff)"></div>
+        <div class="cat-img-emoji">
+          <svg viewBox="0 0 160 160" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ch1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#5c6bc0"/><stop offset="100%" stop-color="#3949ab"/></linearGradient></defs>
+            <filter id="hs"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-opacity="0.18"/></filter>
+            <g filter="url(#hs)">
+              <path d="M50,32 C32,32 20,48 18,62 L38,70 L36,128 L124,128 L122,70 L142,62 C140,48 128,32 110,32 L94,42 Q80,52 66,42 Z" fill="url(#ch1)"/>
+              <path d="M66,42 Q80,56 94,42 L96,68 L64,68 Z" fill="#283593" opacity="0.6"/>
+              <rect x="72" y="70" width="16" height="3" rx="1.5" fill="rgba(255,255,255,0.3)"/>
+              <path d="M56,90 Q68,84 80,90 Q92,84 104,90" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="cat-info"><div class="cat-name">Hoodies</div><div class="cat-count">28 products</div><div class="cat-arrow">Shop now →</div></div>
+    </a>
+    <a class="cat-card" href="#products" onclick="filterByCategory('Cap')">
+      <div class="cat-img">
+        <div class="cat-img-bg" style="background:linear-gradient(145deg,#fff3cd,#ffe08a)"></div>
+        <div class="cat-img-emoji">
+          <svg viewBox="0 0 160 160" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="cc1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4fc3f7"/><stop offset="100%" stop-color="#0288d1"/></linearGradient>
+              <linearGradient id="cc2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0277bd"/><stop offset="100%" stop-color="#01579b"/></linearGradient>
+            </defs>
+            <filter id="caps"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-opacity="0.22"/></filter>
+            <g filter="url(#caps)">
+              <path d="M30,92 Q36,52 80,48 Q124,52 130,92 Z" fill="url(#cc1)"/>
+              <path d="M30,92 Q52,104 80,106 Q108,104 130,92 L126,100 Q106,114 80,116 Q54,114 34,100 Z" fill="url(#cc2)"/>
+              <rect x="18" y="88" width="50" height="13" rx="6.5" fill="#01579b"/>
+              <ellipse cx="80" cy="60" rx="10" ry="6" fill="rgba(255,255,255,0.2)"/>
+              <path d="M76,60 L80,55 L84,60 L80,65Z" fill="white" opacity="0.5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="cat-info"><div class="cat-name">Caps</div><div class="cat-count">19 products</div><div class="cat-arrow">Shop now →</div></div>
+    </a>
+    <a class="cat-card" href="#products" onclick="filterByCategory('Mug')">
+      <div class="cat-img">
+        <div class="cat-img-bg" style="background:linear-gradient(145deg,#c8f7dc,#a0eec0)"></div>
+        <div class="cat-img-emoji">
+          <svg viewBox="0 0 160 160" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="cm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#e8e8e8"/></linearGradient></defs>
+            <filter id="ms"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-opacity="0.15"/></filter>
+            <g filter="url(#ms)">
+              <path d="M46,52 Q44,116 50,120 L110,120 Q116,116 114,52 Z" fill="url(#cm1)" stroke="#ddd" stroke-width="1.5"/>
+              <path d="M110,72 Q128,72 128,88 Q128,104 110,104" fill="none" stroke="#ddd" stroke-width="11" stroke-linecap="round"/>
+              <path d="M110,78 Q122,78 122,88 Q122,98 110,98" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="80" cy="86" r="22" fill="#e84040" opacity="0.12"/>
+              <text x="80" y="83" font-family="serif" font-style="italic" font-size="9" fill="#166534" text-anchor="middle">morning</text>
+              <text x="80" y="97" font-family="serif" font-weight="bold" font-size="16" fill="#166534" text-anchor="middle">brew</text>
+              <!-- steam -->
+              <path d="M66,40 Q66,30 72,26 Q74,36 72,44" stroke="#bbb" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+              <path d="M80,38 Q80,28 86,24 Q88,34 86,42" stroke="#bbb" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+              <path d="M94,40 Q94,30 100,26 Q102,36 100,44" stroke="#bbb" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="cat-info"><div class="cat-name">Mugs</div><div class="cat-count">35 products</div><div class="cat-arrow">Shop now →</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ PRODUCTS ══ -->
+<section class="products" id="products">
+  <div class="section-header reveal">
+    <div class="section-label">Handpicked for You</div>
+    <h2 class="section-title">Featured Products</h2>
+    <p class="section-sub">Our most-loved designs, ready to ship</p>
+  </div>
+  <div class="filter-bar reveal" style="transition-delay:.05s">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-cat="All">All</button>
+      <button class="filter-tab" data-cat="T-Shirt">T-Shirts</button>
+      <button class="filter-tab" data-cat="Hoodie">Hoodies</button>
+      <button class="filter-tab" data-cat="Cap">Caps</button>
+      <button class="filter-tab" data-cat="Mug">Mugs</button>
+      <button class="filter-tab" data-cat="Tote Bag">Totes</button>
+      <button class="filter-tab" data-cat="Poster">Posters</button>
+      <button class="filter-tab" data-cat="Sticker">Stickers</button>
+      <button class="filter-tab" data-cat="Accessory">Accessories</button>
+    </div>
+    <select class="sort-select" id="sortSelect">
+      <option value="default">Sort: Featured</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="rating">Top Rated</option>
+    </select>
+  </div>
+  <div class="products-grid reveal" style="transition-delay:.1s" id="productsGrid"></div>
+</section>
+
+<!-- ══ PROMO ══ -->
+<section class="promo-section">
+  <div class="promo-left reveal">
+    <div class="promo-label">⚡ Limited Time Offer</div>
+    <h2>Get <span>30% Off</span><br>Your First Order</h2>
+    <p>Sign up for our newsletter and unlock an instant discount on your first custom print. No minimum order required.</p>
+    <div class="promo-cta">
+      <a href="#newsletter" class="btn-light">Claim Discount <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#products" class="btn-ghost">Browse Products</a>
+    </div>
+  </div>
+  <div class="promo-right reveal" style="transition-delay:.2s">
+    <div style="position:relative;display:inline-block">
+      <div class="promo-emojis">👕 🧥</div>
+      <div class="promo-discount"><strong>30%</strong><span>OFF</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-header reveal">
+    <div class="section-label">Simple Process</div>
+    <h2 class="section-title">How PrintCraft Works</h2>
+    <p class="section-sub">From idea to doorstep in 4 easy steps</p>
+  </div>
+  <div class="hiw-grid reveal" style="transition-delay:.1s">
+    <div class="hiw-card">
+      <div class="hiw-num">1</div>
+      <div class="hiw-icon">🎨</div>
+      <div class="hiw-title">Choose Your Product</div>
+      <div class="hiw-desc">Browse our catalogue of 100+ blank products — tees, hoodies, mugs, caps, and more.</div>
+    </div>
+    <div class="hiw-card">
+      <div class="hiw-num">2</div>
+      <div class="hiw-icon">✏️</div>
+      <div class="hiw-title">Upload Your Design</div>
+      <div class="hiw-desc">Upload your artwork or use our free design tools to create something totally unique.</div>
+    </div>
+    <div class="hiw-card">
+      <div class="hiw-num">3</div>
+      <div class="hiw-icon">🏭</div>
+      <div class="hiw-title">We Print & Pack</div>
+      <div class="hiw-desc">Our print partners produce your item using premium eco-friendly inks within 48 hours.</div>
+    </div>
+    <div class="hiw-card">
+      <div class="hiw-num">4</div>
+      <div class="hiw-icon">📦</div>
+      <div class="hiw-title">Delivered to You</div>
+      <div class="hiw-desc">Fast worldwide shipping with tracking. Most orders arrive in 3–5 business days.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS BAR ══ -->
+<div class="stats-bar">
+  <div class="stats-bar-grid reveal">
+    <div><div class="sb-num">50<span class="sb-accent">k+</span></div><div class="sb-label">Happy Customers</div></div>
+    <div><div class="sb-num">200<span class="sb-accent">+</span></div><div class="sb-label">Unique Designs</div></div>
+    <div><div class="sb-num">99<span class="sb-accent">%</span></div><div class="sb-label">Satisfaction Rate</div></div>
+    <div><div class="sb-num">48<span class="sb-accent">hr</span></div><div class="sb-label">Average Fulfillment</div></div>
+  </div>
+</div>
+
+<!-- ══ REVIEWS ══ -->
+<section class="reviews" id="reviews">
+  <div class="section-header reveal">
+    <div class="section-label">Real Customers</div>
+    <h2 class="section-title">What People Are Saying</h2>
+    <p class="section-sub">Over 50,000 five-star orders and counting</p>
+  </div>
+  <div class="reviews-grid reveal" style="transition-delay:.1s">
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Absolutely love the quality. The print is crisp, the fabric is super soft, and it fits perfectly. Already ordered three more for my friends!</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#ffe4e4">😊</div>
+        <div><div class="review-name">Sarah M.</div><div class="review-meta">Verified Buyer · New York</div></div>
+      </div>
+      <div class="review-product">👕 Sunset Vibes Tee</div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">The hoodie is incredibly warm and the custom design turned out even better than I imagined. Fast shipping too — arrived 2 days early!</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#e4f0ff">🧑</div>
+        <div><div class="review-name">James K.</div><div class="review-meta">Verified Buyer · London</div></div>
+      </div>
+      <div class="review-product">🧥 Urban Chill Hoodie</div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Ordered custom mugs for our whole office. Everyone was impressed. The print hasn't faded even after hundreds of washes. Will order again!</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#e4fff0">👩</div>
+        <div><div class="review-name">Priya L.</div><div class="review-meta">Verified Buyer · Toronto</div></div>
+      </div>
+      <div class="review-product">☕ Morning Brew Mug</div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">The tote bag is sturdy and the print looks incredible. I've been using it daily for months and it still looks brand new. Great value!</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#fff4e4">🧔</div>
+        <div><div class="review-name">Marco R.</div><div class="review-meta">Verified Buyer · Milan</div></div>
+      </div>
+      <div class="review-product">👜 Eco Canvas Tote</div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">I was skeptical about the quality but PrintCraft blew me away. The colours are vibrant and true to what I designed. Highly recommend!</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#f4e4ff">👧</div>
+        <div><div class="review-name">Aisha T.</div><div class="review-meta">Verified Buyer · Dubai</div></div>
+      </div>
+      <div class="review-product">🧢 Classic Snapback</div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Customer support was amazing when I had a question about my order. They replied within 10 minutes and sorted everything out. 10/10 experience.</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background:#e4fff8">😄</div>
+        <div><div class="review-name">Tom W.</div><div class="review-meta">Verified Buyer · Sydney</div></div>
+      </div>
+      <div class="review-product">👕 Minimalist Wave Tee</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BUNDLE DEALS ══ -->
+<section class="bundles" id="bundles">
+  <div class="section-header reveal">
+    <div class="section-label">Save More</div>
+    <h2 class="section-title">Bundle &amp; Save</h2>
+    <p class="section-sub">Curated sets at unbeatable prices — perfect for gifting</p>
+  </div>
+  <div class="bundles-grid reveal" style="transition-delay:.1s">
+    <div class="bundle-card" onclick="addBundleToCart([1,3,4])">
+      <div class="bundle-header">
+        <div class="bundle-tag">⭐ Most Popular</div>
+        <div class="bundle-name">Starter Pack</div>
+        <div class="bundle-save">Save $22 off individual prices</div>
+        <div class="bundle-emojis">👕🧢</div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-items">
+          <div class="bundle-item">1× Custom T-Shirt of your choice</div>
+          <div class="bundle-item">1× Classic Snapback Cap</div>
+          <div class="bundle-item">1× Custom Printed Mug</div>
+          <div class="bundle-item">Free standard shipping included</div>
+        </div>
+        <div class="bundle-price-row">
+          <div><span class="bundle-price">$59.99</span><span class="bundle-was">$81.97</span></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="bundle-badge-save">Save 27%</span>
+            <button class="btn-bundle">Add Bundle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bundle-card" onclick="addBundleToCart([2,6,10])">
+      <div class="bundle-header">
+        <div class="bundle-tag">🔥 Best Value</div>
+        <div class="bundle-name">Cozy Combo</div>
+        <div class="bundle-save">Save $38 off individual prices</div>
+        <div class="bundle-emojis">🧥👜</div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-items">
+          <div class="bundle-item">1× Premium Hoodie of your choice</div>
+          <div class="bundle-item">1× Eco Canvas Tote Bag</div>
+          <div class="bundle-item">1× Sticker Pack Vol.1</div>
+          <div class="bundle-item">Priority shipping + gift wrap</div>
+        </div>
+        <div class="bundle-price-row">
+          <div><span class="bundle-price">$89.99</span><span class="bundle-was">$127.97</span></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="bundle-badge-save">Save 30%</span>
+            <button class="btn-bundle">Add Bundle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bundle-card" onclick="addBundleToCart([1,2,3,4,10])">
+      <div class="bundle-header">
+        <div class="bundle-tag">🎁 Gift Special</div>
+        <div class="bundle-name">Full Gift Set</div>
+        <div class="bundle-save">Save $56 off individual prices</div>
+        <div class="bundle-emojis">🎁✨</div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-items">
+          <div class="bundle-item">1× T-Shirt + 1× Hoodie</div>
+          <div class="bundle-item">1× Cap + 1× Mug</div>
+          <div class="bundle-item">1× Tote Bag + Sticker Pack</div>
+          <div class="bundle-item">Premium gift box + free card</div>
+        </div>
+        <div class="bundle-price-row">
+          <div><span class="bundle-price">$149.99</span><span class="bundle-was">$205.93</span></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="bundle-badge-save">Save 27%</span>
+            <button class="btn-bundle">Add Bundle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ══ -->
+<section class="newsletter" id="newsletter">
+  <div class="nl-inner reveal">
+    <div class="nl-icon">✉️</div>
+    <h2 class="nl-title section-title">Stay in the Loop</h2>
+    <p class="nl-sub">Get exclusive deals, new arrivals, and design inspo delivered to your inbox. No spam, unsubscribe anytime.</p>
+    <form class="nl-form" id="nlForm" novalidate>
+      <input type="email" class="nl-input" id="nlEmail" placeholder="your@email.com" required/>
+      <button type="submit" class="nl-submit">Subscribe</button>
+    </form>
+    <p class="nl-note">🎁 Get code <strong>WELCOME30</strong> instantly when you subscribe</p>
+    <p class="nl-success" id="nlSuccess">🎉 Welcome! Your code <strong>WELCOME30</strong> has been sent to your inbox.</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>Print<span>Craft</span></a>
+      <p>Your one-stop shop for premium custom print-on-demand products. Wear it, gift it, love it.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#" onclick="return false;" aria-label="Instagram">📷</a>
+        <a class="social-btn" href="#" onclick="return false;" aria-label="Twitter">🐦</a>
+        <a class="social-btn" href="#" onclick="return false;" aria-label="Facebook">💬</a>
+        <a class="social-btn" href="#" onclick="return false;" aria-label="Pinterest">📌</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul>
+      <li><a href="#products" onclick="setTimeout(()=>filterByCategory('T-Shirt'),100)">T-Shirts</a></li>
+      <li><a href="#products" onclick="setTimeout(()=>filterByCategory('Hoodie'),100)">Hoodies</a></li>
+      <li><a href="#products" onclick="setTimeout(()=>filterByCategory('Cap'),100)">Caps</a></li>
+      <li><a href="#products" onclick="setTimeout(()=>filterByCategory('Mug'),100)">Mugs</a></li>
+      <li><a href="#bestsellers">New Arrivals</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Help</h4><ul>
+      <li><a href="#" onclick="showFooterModal('FAQs','Have a question? Email us at <strong>help@printcraft.com</strong> or check our FAQ page. We typically respond within 24 hours.');return false;">FAQs</a></li>
+      <li><a href="#" onclick="showFooterModal('Shipping Info','We ship worldwide! Standard delivery takes 3–5 business days. Express options available at checkout. Free shipping on orders over $50.');return false;">Shipping Info</a></li>
+      <li><a href="#" onclick="showFooterModal('Returns','Not happy? No problem. We accept returns within 30 days of delivery. Items must be unworn and in original condition. Contact us to start a return.');return false;">Returns</a></li>
+      <li><a href="#" onclick="showFooterModal('Size Guide','Our products run true to size. Check individual product pages for specific measurements. When in doubt, size up for a relaxed fit.');return false;">Size Guide</a></li>
+      <li><a href="#" onclick="showFooterModal('Track Order','Enter your order number and email at our tracking portal to see live updates. Orders are usually dispatched within 48 hours of placement.');return false;">Track Order</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Company</h4><ul>
+      <li><a href="#" onclick="showFooterModal('About Us','PrintCraft was founded in 2020 with one mission: make custom print-on-demand easy, affordable, and beautiful. We work with ethical print partners worldwide.');return false;">About Us</a></li>
+      <li><a href="#" onclick="showFooterModal('Blog','Visit our blog for design tips, trend reports, and product spotlights. New articles every week — follow us on social for updates.');return false;">Blog</a></li>
+      <li><a href="#" onclick="showFooterModal('Careers','We\'re a remote-first team always looking for talented people. Send your CV and portfolio to <strong>jobs@printcraft.com</strong>.');return false;">Careers</a></li>
+      <li><a href="#newsletter">Contact</a></li>
+      <li><a href="#" onclick="showFooterModal('Privacy Policy','We take your privacy seriously. We never sell your data. All payments are processed securely. Read our full privacy policy at printcraft.com/privacy.');return false;">Privacy Policy</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 PrintCraft. All rights reserved.</span>
+    <div style="display:flex;gap:1rem">
+      <a href="#" onclick="showFooterModal('Terms of Service','By using PrintCraft you agree to our terms. All designs must be original or licensed. We reserve the right to reject orders that violate IP rights.');return false;">Terms</a>
+      <a href="#" onclick="showFooterModal('Privacy Policy','We take your privacy seriously. We never sell your data. All payments are processed securely.');return false;">Privacy</a>
+      <a href="#" onclick="showFooterModal('Cookie Policy','We use cookies to improve your experience. Essential cookies are always on. You can opt out of analytics cookies in your browser settings.');return false;">Cookies</a>
+    </div>
+  </div>
+
+</footer>
+
+<!-- Footer info modal -->
+<div id="footerModal" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.5);align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px)" onclick="if(event.target===this)closeFooterModal()">
+  <div style="background:white;border-radius:20px;padding:2rem;max-width:460px;width:100%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.25);animation:modalIn .3s cubic-bezier(.34,1.56,.64,1)">
+    <h3 id="footerModalTitle" style="font-family:'Syne',Georgia,serif;font-size:1.3rem;font-weight:800;margin-bottom:.75rem"></h3>
+    <p id="footerModalBody" style="color:#666;line-height:1.75;font-size:.92rem"></p>
+    <button onclick="closeFooterModal()" style="position:absolute;top:1rem;right:1rem;background:#f0efec;border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">✕</button>
+  </div>
+</div>
+
+<!-- ══ CART DRAWER ══ -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <div style="display:flex;align-items:center"><span class="drawer-title">Your Cart</span><span class="drawer-count" id="cartItemCount">0 items</span></div>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="promo-code-box" id="promoBox">
+    <button class="promo-toggle" id="promoToggle" onclick="togglePromo()">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      Have a promo code?
+    </button>
+    <div class="promo-form hidden" id="promoForm">
+      <input type="text" class="promo-input" id="promoInput" placeholder="Enter code e.g. WELCOME30"/>
+      <button class="promo-apply" onclick="applyPromo()">Apply</button>
+    </div>
+    <div class="promo-msg" id="promoMsg"></div>
+    <div class="promo-applied hidden" id="promoApplied">
+      <span>🎉</span><span id="promoAppliedText"></span>
+      <button onclick="removePromo()">✕</button>
+    </div>
+  </div>
+  <div class="cart-foot" id="cartFoot"></div>
+</div>
+
+<!-- ══ WISHLIST DRAWER ══ -->
+<div class="wishlist-drawer" id="wishlistDrawer">
+  <div class="drawer-head">
+    <div style="display:flex;align-items:center"><span class="drawer-title">Wishlist</span><span class="drawer-count" id="wishItemCount">0 items</span></div>
+    <button class="close-btn" onclick="closeWishlist()">✕</button>
+  </div>
+  <div class="wishlist-body" id="wishlistBody"></div>
+</div>
+
+<!-- ══ QUICK-VIEW MODAL ══ -->
+<div class="modal-wrap" id="modalWrap">
+  <div class="overlay" style="position:fixed;inset:0;z-index:1099" onclick="closeModal()"></div>
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ══ CHECKOUT MODAL ══ -->
+<div class="checkout-wrap" id="checkoutWrap">
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-head">
+      <span class="checkout-title">Checkout</span>
+      <button class="close-btn" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="checkout-steps" id="checkoutSteps"></div>
+    <div id="checkoutInner"></div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast"><span id="toastMsg">Added to cart!</span></div>
+<script src="script.js"></script>
+
+</body>
+</html>
